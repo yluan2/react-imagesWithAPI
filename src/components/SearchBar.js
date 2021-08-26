@@ -6,12 +6,15 @@ class SearchBar extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.term);
+    //call the props passed from the App
+    this.props.onSubmitTest(this.state.term);
   };
 
   render() {
     return (
       <div className="ui segment">
+        {/* a method passed to an event handler, no need to have () */}
+        {/* must call onSubmit here since it's the form element */}
         <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>Image Search</label>
@@ -19,6 +22,8 @@ class SearchBar extends React.Component {
             {/* dont want to call when rendered but input can call that function sometime in the future */}
             <input
               type="text"
+              //input is going to show in the textbox  Controlled version
+              //no need to get info from DOM world when asking what's the value of inputs
               value={this.state.term}
               // the time called setState, rerender will work
               onChange={(e) => this.setState({ term: e.target.value })}
